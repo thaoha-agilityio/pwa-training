@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`Tabs Component renders all page numbers correctly without ellipsis 1`] = `
+exports[`Tabs Component renders Tabs component is correct 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
