@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   clearMocks: true,
   collectCoverage: true,
   coverageDirectory: 'coverage',
@@ -10,11 +10,14 @@ module.exports = {
     '<rootDir>/src/**/*.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
     '!<rootDir>/node_modules/',
-    '!<rootDir>/jest.config.ts',
+    '!<rootDir>/jest.config.mjs',
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {
     '@/(.*)': '<rootDir>/src/$1',
   },
   testPathIgnorePatterns: ['<rootDir>/node_modules/'],
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+  },
 };
