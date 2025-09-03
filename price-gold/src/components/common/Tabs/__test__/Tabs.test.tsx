@@ -16,7 +16,7 @@ const tabs = [
 ];
 
 describe('Tabs Component', () => {
-  it('renders all page numbers correctly without ellipsis', () => {
+  it('renders Tabs component is correct', () => {
     const container = render(<Tabs tabs={tabs} defaultValue="profile" />);
 
     expect(container).toMatchSnapshot();
