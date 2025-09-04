@@ -1,5 +1,5 @@
 // Types
-import { Currency } from '@/types';
+import { CurrencyPair } from '@/types';
 
 // Components
 import { Typography } from '../common/Typography';
@@ -8,14 +8,14 @@ import { Typography } from '../common/Typography';
 import { formatCurrency } from '@/utils';
 
 interface PriceGoldProps {
-  latestPrice: number;
+  latestPrice?: number;
   change: number;
   changePercent: number;
-  currency?: Currency;
+  currency?: CurrencyPair;
 }
 
 export const PriceGold = ({
-  latestPrice,
+  latestPrice = 0,
   change,
   changePercent,
 }: PriceGoldProps) => {

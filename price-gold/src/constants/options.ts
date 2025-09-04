@@ -1,12 +1,12 @@
 export const CURRENCIES_OPTIONS = [
   {
     label: 'USD',
-    value: 'usd',
-    icon: '/public/images/us.png',
+    value: 'USD',
+    icon: '/images/us.png',
   },
   {
     label: 'Euro',
-    value: 'euro',
-    icon: '/public/images/euro.png',
+    value: 'EUR',
+    icon: '/images/euro.png',
   },
 ];

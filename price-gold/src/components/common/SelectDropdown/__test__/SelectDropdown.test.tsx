@@ -1,22 +1,13 @@
 import { render, screen } from '@testing-library/react';
 
+// Components
 import { SelectDropdown } from '..';
 
-const DropdownOption = [
-  {
-    label: 'USD',
-    value: 'usd',
-    icon: '/public/images/us.png',
-  },
-  {
-    label: 'Euro',
-    value: 'euro',
-    icon: '/public/images/euro.png',
-  },
-];
+// Constants
+import { CURRENCIES_OPTIONS } from '@/constants';
 
 const mockProps = {
-  options: DropdownOption,
+  options: CURRENCIES_OPTIONS,
   onSelect: jest.fn(),
 };
 describe('SelectDropdown Component', () => {

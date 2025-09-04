@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 // Components
 import {
   Button,
@@ -11,12 +13,18 @@ import {
 import { CURRENCIES_OPTIONS } from '@/constants';
 
 // Hooks
-import { useLatestPriceGold } from '@/hooks';
+import { useDebouncedCallback, useLatestPriceGold } from '@/hooks';
 
 export const Home = () => {
-  const { data, isFetching, refetch } = useLatestPriceGold();
+  const [currency, setCurrency] = useState(CURRENCIES_OPTIONS[0].value);
 
-  const { USDXAU: latestPrice = 0 } = data?.rates || {};
+  const { data, isFetching, refetch } = useLatestPriceGold(currency);
+
+  const currencyRate = data.rates;
+
+  const isUSD = currency === CURRENCIES_OPTIONS[0].value;
+
+  const latestPrice = isUSD ? currencyRate.USDXAU : currencyRate.EURXAU;
 
   const TABS_DATA = [
     {
@@ -43,6 +51,12 @@ export const Home = () => {
     },
   ];
 
+  const handleRefresh = useDebouncedCallback(() => refetch(), 500);
+
+  const handleCurrencyChange = (value: string) => {
+    setCurrency(value);
+  };
+
   return (
     <div className="m-auto w-5xl py-6">
       <Typography variant="h1">Gold Price Charts</Typography>
@@ -53,14 +67,15 @@ export const Home = () => {
           <Button
             disabled={isFetching}
             isLoading={isFetching}
-            onClick={() => refetch()}
+            onClick={handleRefresh}
           >
             Refresh
           </Button>
           <SelectDropdown
+            selectedValue={currency}
             options={CURRENCIES_OPTIONS}
             extraStyle="w-[200px]"
-            onSelect={(value) => console.log(value)}
+            onSelect={handleCurrencyChange}
           />
         </div>
       </div>
