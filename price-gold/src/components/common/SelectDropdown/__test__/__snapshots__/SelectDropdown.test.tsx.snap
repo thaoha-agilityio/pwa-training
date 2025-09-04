@@ -5,9 +5,7 @@ exports[`SelectDropdown Component renders correctly with given props 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="w-full"
-      >
+      <div>
         <button
           aria-autocomplete="none"
           aria-controls="radix-«r0»"
@@ -49,9 +47,7 @@ exports[`SelectDropdown Component renders correctly with given props 1`] = `
     </div>
   </body>,
   "container": <div>
-    <div
-      class="w-full"
-    >
+    <div>
       <button
         aria-autocomplete="none"
         aria-controls="radix-«r0»"
