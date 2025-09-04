@@ -1,20 +1,12 @@
+// Constants
+import { DATA_POINTS } from '@/constants';
+
+// Types
 import { PeriodType } from '@/types';
 
 export const generatePriceData = (period: PeriodType) => {
   const now = new Date();
-  const dataPoints: Record<PeriodType, number> = {
-    '24H': 48,
-    '3D': 72,
-    '1W': 168,
-    '1M': 720,
-    '3M': 2160,
-    YTD: 6000,
-    '1Y': 8760,
-    '5Y': 43800,
-    All: 87600,
-  };
-
-  const points = dataPoints[period] || 48;
+  const points = DATA_POINTS[period] || 48;
   const data = [];
   let basePrice = 85.4;
 
@@ -61,7 +53,10 @@ const getTimeInterval = (period: PeriodType) => {
   return intervals[period] || intervals['24H'];
 };
 
-const formatTimeForDisplay = (date: Date, period: PeriodType): string => {
+export const formatTimeForDisplay = (
+  date: Date,
+  period: PeriodType,
+): string => {
   const timeOptions: Intl.DateTimeFormatOptions = {
     hour: '2-digit',
     minute: '2-digit',
