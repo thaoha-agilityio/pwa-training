@@ -11,3 +11,16 @@ export interface GoldPrice {
   price: number;
   rates: Rates;
 }
+
+export interface HistoricalGoldPrice {
+  start_rate: number;
+  end_rate: number;
+  rates: {
+    XAU: {
+      change: number;
+      change_pct: number;
+      end_rate: number;
+      start_rate: number;
+    };
+  };
+}

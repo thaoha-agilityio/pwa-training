@@ -2,7 +2,7 @@
 import { Typography } from '../common/Typography';
 
 // Utils
-import { formatCurrency } from '@/utils';
+import { formatChange, formatCurrency, formatPercent } from '@/utils';
 
 interface PriceGoldProps {
   latestPrice?: number;
@@ -21,6 +21,8 @@ export const PriceGold = ({
 }: PriceGoldProps) => {
   const symbol = isUSD ? '$' : '€';
 
+  const isPositiveAmount = changePercent >= 0;
+
   return (
     <div className="flex gap-3 items-center">
       <Typography variant="h2" className="text-lg md:text-3xl">
@@ -28,8 +30,14 @@ export const PriceGold = ({
         {formatCurrency(latestPrice)} {currency}
       </Typography>
       <Typography variant="span">
-        Change: - {change} {currency}{' '}
-        <span className="font-semibold text-increase">{changePercent}</span>
+        Change: {formatChange(change, currency)}{' '}
+        <span
+          className={`font-medium  ${
+            isPositiveAmount ? 'text-increase' : 'text-decrease'
+          }`}
+        >
+          {formatPercent(changePercent)}
+        </span>
       </Typography>
       <Typography variant="p">24H</Typography>
     </div>
