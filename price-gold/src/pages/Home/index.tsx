@@ -7,6 +7,7 @@ import {
   SelectDropdown,
   Tabs,
   Typography,
+  TradingPriceChart,
 } from '@/components';
 
 // Constants
@@ -77,12 +78,12 @@ export const Home = () => {
   };
 
   return (
-    <div className="m-auto w-5xl py-6">
+    <div className="p-3 w-full m-auto md:max-w-6xl py-6">
       <Typography variant="h1">Gold Price Charts</Typography>
-      <div className="my-6 flex justify-between">
+      <div className="my-6 flex  md:flex-row flex-col-reverse justify-between">
         <Tabs tabs={TABS_DATA} />
 
-        <div className="flex gap-4">
+        <div className="flex pb-1 gap-2 md:gap-4">
           <Button
             disabled={isFetching}
             isLoading={isFetching}
@@ -93,11 +94,13 @@ export const Home = () => {
           <SelectDropdown
             selectedValue={currency}
             options={CURRENCIES_OPTIONS}
-            extraStyle="w-[200px]"
+            extraStyle="w-[120px] md:w-[200px]"
             onSelect={handleCurrencyChange}
           />
         </div>
       </div>
+
+      <TradingPriceChart />
     </div>
   );
 };

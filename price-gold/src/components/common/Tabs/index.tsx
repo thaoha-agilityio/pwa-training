@@ -39,7 +39,7 @@ export const Tabs = ({
               key={value}
               value={value}
               onClick={onClick}
-              className="pb-2 cursor-pointer text-xl text-secondary"
+              className="pb-2 cursor-pointer text-md md:text-xl text-secondary"
             >
               {label}
             </TabsTrigger>

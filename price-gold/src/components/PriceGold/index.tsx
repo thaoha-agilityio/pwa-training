@@ -25,7 +25,7 @@ export const PriceGold = ({
 
   return (
     <div className="flex gap-3 items-center">
-      <Typography variant="h2">
+      <Typography variant="h2" className="text-lg md:text-3xl">
         {symbol}
         {formatCurrency(latestPrice)} {currency}
       </Typography>
