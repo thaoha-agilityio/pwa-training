@@ -1,22 +1,13 @@
 import { render, screen } from '@testing-library/react';
 
+// Components
 import { SelectDropdown } from '..';
 
-const DropdownOption = [
-  {
-    label: 'USD',
-    value: 'usd',
-    icon: '/public/images/us.png',
-  },
-  {
-    label: 'Euro',
-    value: 'euro',
-    icon: '/public/images/euro.png',
-  },
-];
+// Constants
+import { CURRENCIES_OPTIONS } from '@/constants';
 
 const mockProps = {
-  options: DropdownOption,
+  options: CURRENCIES_OPTIONS,
   onSelect: jest.fn(),
 };
 describe('SelectDropdown Component', () => {
@@ -33,7 +24,7 @@ describe('SelectDropdown Component', () => {
   });
 
   it('shows the selected value when provided', () => {
-    render(<SelectDropdown {...mockProps} selectedValue="usd" />);
+    render(<SelectDropdown {...mockProps} selectedValue="USD" />);
 
     expect(screen.getByText('USD')).toBeInTheDocument();
   });

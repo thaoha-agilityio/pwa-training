@@ -1,5 +1,5 @@
 // Constants
-import { API_KEY, API_URL } from '@/constants';
+import { API_URL } from '@/constants';
 
 type RequestOption = Omit<RequestInit, 'body'> & {
   body?: object;
@@ -49,7 +49,7 @@ class APIClient {
     };
 
     try {
-      const res = await fetch(`${API_URL}?api_key=${API_KEY}${url}`, options);
+      const res = await fetch(`${API_URL}${url}`, options);
 
       if (!res.ok) return (await res.json()) as FailedResponse;
 

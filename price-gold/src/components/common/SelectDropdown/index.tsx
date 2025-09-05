@@ -20,6 +20,7 @@ type DropdownProps = {
   selectedValue?: string;
   errorMessage?: string;
   placeholder?: string;
+  extraStyle?: string;
   onSelect: (value: string) => void;
 };
 
@@ -29,10 +30,11 @@ export const SelectDropdown = ({
   label,
   selectedValue,
   errorMessage,
+  extraStyle,
   placeholder = 'Select an option',
   onSelect,
 }: DropdownProps) => (
-  <div className="w-full">
+  <div className={extraStyle}>
     {label && (
       <label className="block text-sm font-medium text-secondary mb-2">
         {label}
@@ -49,7 +51,7 @@ export const SelectDropdown = ({
       <SelectContent>
         {options.map((option) => (
           <SelectItem key={option.value} value={option.value}>
-            <div className="flex items-center">
+            <div className="flex items-center text-secondary">
               {option.icon && (
                 <img
                   src={option.icon}
