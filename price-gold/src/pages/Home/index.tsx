@@ -13,18 +13,31 @@ import {
 import { CURRENCIES_OPTIONS } from '@/constants';
 
 // Hooks
-import { useDebouncedCallback, useLatestPriceGold } from '@/hooks';
+import {
+  useDebouncedCallback,
+  useHistoricalPriceGold,
+  useLatestPriceGold,
+} from '@/hooks';
 
 export const Home = () => {
   const [currency, setCurrency] = useState(CURRENCIES_OPTIONS[0].value);
 
-  const { data, isFetching, refetch } = useLatestPriceGold(currency);
+  // Queries
+  const {
+    data: latestData,
+    isFetching,
+    refetch,
+  } = useLatestPriceGold(currency);
 
-  const currencyRate = data.rates;
+  const { data: historicalData } = useHistoricalPriceGold(currency);
 
+  // Latest rates
+  const { rates: latestRates } = latestData || {};
+  const { rates: historicalRates } = historicalData || {};
+
+  // Helpers
   const isUSD = currency === CURRENCIES_OPTIONS[0].value;
-
-  const latestPrice = isUSD ? currencyRate.USDXAU : currencyRate.EURXAU;
+  const latestPrice = isUSD ? latestRates.USDXAU : latestRates.EURXAU;
 
   const TABS_DATA = [
     {
@@ -32,18 +45,18 @@ export const Home = () => {
       label: 'Gold',
       content: (
         <PriceGold
-          latestPrice={latestPrice}
-          change={0}
-          changePercent={0}
-          currency={currency}
           isUSD={isUSD}
+          latestPrice={latestPrice}
+          change={historicalRates.XAU.change}
+          changePercent={historicalRates.XAU.change_pct}
+          currency={currency}
         />
       ),
     },
     {
       value: 'sliver',
       label: 'Sliver',
-      content: <Typography>€3,097.30 EUR</Typography>,
+      content: <Typography>Sliver</Typography>,
     },
     {
       value: 'platinum',
