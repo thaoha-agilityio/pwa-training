@@ -24,7 +24,7 @@ describe('SelectDropdown Component', () => {
   });
 
   it('shows the selected value when provided', () => {
-    render(<SelectDropdown {...mockProps} selectedValue="usd" />);
+    render(<SelectDropdown {...mockProps} selectedValue="USD" />);
 
     expect(screen.getByText('USD')).toBeInTheDocument();
   });
