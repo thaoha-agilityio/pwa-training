@@ -26,7 +26,7 @@ exports[`Tabs Component renders Tabs component is correct 1`] = `
             <button
               aria-controls="radix-«r0»-content-profile"
               aria-selected="true"
-              class="relative data-[state=active]:text-secondary flex-1 items-center justify-center gap-1.5 px-2 py- font-medium whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-[2px] data-[state=active]:after:bg-primary pb-2 cursor-pointer text-xl text-secondary"
+              class="relative data-[state=active]:text-secondary flex-1 items-center justify-center gap-1.5 px-2 py- font-medium whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-[2px] data-[state=active]:after:bg-primary pb-2 cursor-pointer text-md md:text-xl text-secondary"
               data-orientation="horizontal"
               data-radix-collection-item=""
               data-slot="tabs-trigger"
@@ -41,7 +41,7 @@ exports[`Tabs Component renders Tabs component is correct 1`] = `
             <button
               aria-controls="radix-«r0»-content-security"
               aria-selected="false"
-              class="relative data-[state=active]:text-secondary flex-1 items-center justify-center gap-1.5 px-2 py- font-medium whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-[2px] data-[state=active]:after:bg-primary pb-2 cursor-pointer text-xl text-secondary"
+              class="relative data-[state=active]:text-secondary flex-1 items-center justify-center gap-1.5 px-2 py- font-medium whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-[2px] data-[state=active]:after:bg-primary pb-2 cursor-pointer text-md md:text-xl text-secondary"
               data-orientation="horizontal"
               data-radix-collection-item=""
               data-slot="tabs-trigger"
@@ -106,7 +106,7 @@ exports[`Tabs Component renders Tabs component is correct 1`] = `
           <button
             aria-controls="radix-«r0»-content-profile"
             aria-selected="true"
-            class="relative data-[state=active]:text-secondary flex-1 items-center justify-center gap-1.5 px-2 py- font-medium whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-[2px] data-[state=active]:after:bg-primary pb-2 cursor-pointer text-xl text-secondary"
+            class="relative data-[state=active]:text-secondary flex-1 items-center justify-center gap-1.5 px-2 py- font-medium whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-[2px] data-[state=active]:after:bg-primary pb-2 cursor-pointer text-md md:text-xl text-secondary"
             data-orientation="horizontal"
             data-radix-collection-item=""
             data-slot="tabs-trigger"
@@ -121,7 +121,7 @@ exports[`Tabs Component renders Tabs component is correct 1`] = `
           <button
             aria-controls="radix-«r0»-content-security"
             aria-selected="false"
-            class="relative data-[state=active]:text-secondary flex-1 items-center justify-center gap-1.5 px-2 py- font-medium whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-[2px] data-[state=active]:after:bg-primary pb-2 cursor-pointer text-xl text-secondary"
+            class="relative data-[state=active]:text-secondary flex-1 items-center justify-center gap-1.5 px-2 py- font-medium whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-[2px] data-[state=active]:after:bg-primary pb-2 cursor-pointer text-md md:text-xl text-secondary"
             data-orientation="horizontal"
             data-radix-collection-item=""
             data-slot="tabs-trigger"
