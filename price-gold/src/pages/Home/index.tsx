@@ -31,13 +31,19 @@ export const Home = () => {
       value: 'gold',
       label: 'Gold',
       content: (
-        <PriceGold latestPrice={latestPrice} change={0} changePercent={0} />
+        <PriceGold
+          latestPrice={latestPrice}
+          change={0}
+          changePercent={0}
+          currency={currency}
+          isUSD={isUSD}
+        />
       ),
     },
     {
       value: 'sliver',
       label: 'Sliver',
-      content: <Typography>Sliver</Typography>,
+      content: <Typography>€3,097.30 EUR</Typography>,
     },
     {
       value: 'platinum',
