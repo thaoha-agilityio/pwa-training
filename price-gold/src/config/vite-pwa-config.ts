@@ -33,6 +33,24 @@ export const MANIFEST_OPTIONS: Partial<ManifestOptions> = {
       type: 'image/png',
     },
   ],
+  screenshots: [
+    {
+      src: '/screenshots/desktop-home.png',
+      sizes: '800x800',
+      type: 'image/png',
+      form_factor: 'wide',
+      label: 'Home page on desktop',
+    },
+
+    {
+      src: '/screenshots/mobile-home.png',
+      sizes: '380x380',
+      type: 'image/png',
+      form_factor: 'narrow',
+      label: 'Home page on mobile',
+    },
+  ],
+
   shortcuts: [
     {
       name: 'Home',

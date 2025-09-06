@@ -1,4 +1,4 @@
-import { PeriodType } from '@/types';
+import { PeriodType } from '../types';
 
 export const DATA_POINTS: Record<PeriodType, number> = {
   '24H': 48,

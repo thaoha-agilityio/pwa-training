@@ -1,4 +1,4 @@
-import { GoldPrice } from '@/types';
+import { GoldPrice } from '../types';
 
 export const INIT_GOLD_PRICE: GoldPrice = {
   date: '',
