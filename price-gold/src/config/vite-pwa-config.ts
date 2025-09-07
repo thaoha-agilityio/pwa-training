@@ -107,6 +107,40 @@ export const GENERATE_SW_OPTIONS = (): Options['workbox'] => ({
       },
     },
     {
+      // Cache splash screen images with Cache First strategy
+      urlPattern: /^\/splash\/.*\.(png|jpg|jpeg|svg)$/,
+      handler: 'CacheFirst', // Cache splash screens and use cached version when offline
+      options: {
+        cacheName: CACHE_NAMES.SPLASH_SCREENS,
+        expiration: {
+          maxAgeSeconds: 30 * 24 * 60 * 60, // Cache for 30 days
+        },
+        backgroundSync: {
+          name: 'splash-sync-queue',
+          options: {
+            maxRetentionTime: 60 * 24, // Keep sync requests for 24 hours
+          },
+        },
+      },
+    },
+    {
+      // Cache icon images with Cache First strategy
+      urlPattern: /^\/icons\/.*\.(png|jpg|jpeg|svg)$/,
+      handler: 'CacheFirst', // Cache icons and use cached version when offline
+      options: {
+        cacheName: CACHE_NAMES.ICONS,
+        expiration: {
+          maxAgeSeconds: 30 * 24 * 60 * 60, // Cache for 30 days
+        },
+        backgroundSync: {
+          name: 'icon-sync-queue',
+          options: {
+            maxRetentionTime: 60 * 24, // Keep sync requests for 24 hours
+          },
+        },
+      },
+    },
+    {
       // Cache CSS/JS using Stale-While-Revalidate to serve cached files while fetching updates
       urlPattern: /\.(?:js|css)$/i,
       handler: 'StaleWhileRevalidate', // Serve cached CSS/JS while revalidating in the background
@@ -136,6 +170,50 @@ export const GENERATE_SW_OPTIONS = (): Options['workbox'] => ({
           name: 'manifest-sync-queue',
           options: {
             maxRetentionTime: 60 * 24, // Keep sync requests for 24 hours
+          },
+        },
+      },
+    },
+    {
+      // Cache latest gold price API response
+      urlPattern: /^https:\/\/api\.metalpriceapi\.com\/v1\/latest/i,
+      handler: 'NetworkFirst',
+      options: {
+        cacheName: CACHE_NAMES.API_PRICE_GOLD,
+        expiration: {
+          maxEntries: 1,
+          maxAgeSeconds: 60 * 60, // Cache valid for 1 hour
+        },
+        networkTimeoutSeconds: 3, // fallback to cache if slow
+        cacheableResponse: {
+          statuses: [0, 200],
+        },
+        backgroundSync: {
+          name: 'api-queue-price-gold',
+          options: {
+            maxRetentionTime: 24 * 60, // retry failed requests for 24h
+          },
+        },
+      },
+    },
+    {
+      // Cache historical gold price API responses
+      urlPattern: /^https:\/\/api\.metalpriceapi\.com\/v1\/change/i,
+      handler: 'NetworkFirst',
+      options: {
+        cacheName: CACHE_NAMES.API_HISTORICAL_GOLD,
+        expiration: {
+          maxEntries: 5, // keep last 5 requests
+          maxAgeSeconds: 60 * 60, // 1 hour
+        },
+        networkTimeoutSeconds: 3,
+        cacheableResponse: {
+          statuses: [0, 200],
+        },
+        backgroundSync: {
+          name: 'api-queue-historical-gold',
+          options: {
+            maxRetentionTime: 24 * 60, // retry failed requests for 24h
           },
         },
       },

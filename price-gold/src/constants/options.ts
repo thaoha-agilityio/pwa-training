@@ -2,11 +2,11 @@ export const CURRENCIES_OPTIONS = [
   {
     label: 'USD',
     value: 'USD',
-    icon: '/images/us.png',
+    icon: '/icons/us.png',
   },
   {
     label: 'Euro',
     value: 'EUR',
-    icon: '/images/euro.png',
+    icon: '/icons/euro.png',
   },
 ];

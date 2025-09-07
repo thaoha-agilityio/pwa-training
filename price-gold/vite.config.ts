@@ -5,7 +5,7 @@ import path from 'path';
 import tailwindcss from '@tailwindcss/vite';
 
 // config
-import { MANIFEST_OPTIONS } from './src/config';
+import { GENERATE_SW_OPTIONS, MANIFEST_OPTIONS } from './src/config';
 
 const envVariables = loadEnv('mock', process.cwd(), '');
 // https://vitejs.dev/config/
@@ -16,11 +16,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: MANIFEST_OPTIONS,
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,ico}'],
-        cleanupOutdatedCaches: true,
-        clientsClaim: true,
-      },
+      workbox: GENERATE_SW_OPTIONS(),
       devOptions: {
         enabled: false, // enable only for debugging in dev
       },
