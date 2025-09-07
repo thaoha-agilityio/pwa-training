@@ -19,6 +19,7 @@ import {
   useHistoricalPriceGold,
   useLatestPriceGold,
 } from '@/hooks';
+import { getDeviceToken } from '@/utils/notification';
 
 export const Home = () => {
   const [currency, setCurrency] = useState(CURRENCIES_OPTIONS[0].value);
@@ -99,7 +100,7 @@ export const Home = () => {
           />
         </div>
       </div>
-
+      <Button onClick={getDeviceToken}>getDeviceToken</Button>
       <TradingPriceChart />
     </div>
   );
