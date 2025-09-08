@@ -1,4 +1,4 @@
-import { getToken, getMessaging, onMessage } from 'firebase/messaging';
+import { getToken, getMessaging } from 'firebase/messaging';
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
@@ -21,6 +21,7 @@ export const getDeviceToken = async () => {
 
     if (token) {
       console.log('FCM Token:', token);
+
       return token;
     } else {
       console.log('No registration token available.');
@@ -29,7 +30,3 @@ export const getDeviceToken = async () => {
     console.error('Failed to fetch device token:', error);
   }
 };
-
-onMessage(messaging, (payload) => {
-  console.log('Foreground FCM message:', payload);
-});
