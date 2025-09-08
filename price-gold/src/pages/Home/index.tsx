@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
 // Components
 import {
@@ -18,19 +19,23 @@ import {
   useDebouncedCallback,
   useHistoricalPriceGold,
   useLatestPriceGold,
+  useOnlineStatus,
 } from '@/hooks';
 
 export const Home = () => {
   const [currency, setCurrency] = useState(CURRENCIES_OPTIONS[0].value);
+  const isOnline = useOnlineStatus();
 
   // Queries
   const {
     data: latestData,
     isFetching,
     refetch,
+    error: errorLatest,
   } = useLatestPriceGold(currency);
 
-  const { data: historicalData } = useHistoricalPriceGold(currency);
+  const { data: historicalData, error: errorHistorical } =
+    useHistoricalPriceGold(currency);
 
   // Latest rates
   const { rates: latestRates } = latestData || {};
@@ -38,7 +43,7 @@ export const Home = () => {
 
   // Helpers
   const isUSD = currency === CURRENCIES_OPTIONS[0].value;
-  const latestPrice = isUSD ? latestRates.USDXAU : latestRates.EURXAU;
+  const latestPrice = isUSD ? latestRates?.USDXAU : latestRates?.EURXAU;
 
   const TABS_DATA = [
     {
@@ -77,6 +82,14 @@ export const Home = () => {
     setCurrency(value);
   };
 
+  useEffect(() => {
+    if (errorLatest || errorHistorical) {
+      toast.error('Fetch error', {
+        description: errorLatest || errorHistorical,
+      });
+    }
+  }, [errorLatest, errorHistorical]);
+
   return (
     <div className="p-3 w-full m-auto md:max-w-6xl py-6">
       <Typography variant="h1">Gold Price Charts</Typography>
@@ -99,7 +112,11 @@ export const Home = () => {
           />
         </div>
       </div>
-
+      {!isOnline && (
+        <Typography className="text-destructive py-4">
+          You are offline. Data may be outdated.
+        </Typography>
+      )}
       <TradingPriceChart />
     </div>
   );
