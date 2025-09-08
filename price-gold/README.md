@@ -59,13 +59,17 @@
 
 4. **Create environment variables**
 
-- Create a .env file in the root of the project and add the following:
+- Create a .env file in the root of the project and update it with your environment-specific variables follow .env.sample file
 
 5. **Start the project**
 
-   ```bash
-   pnpm dev
-   ```
+   | Script         | Description                                           |
+   | -------------- | ----------------------------------------------------- |
+   | `pnpm dev`     | Starts the development server using Vite              |
+   | `pnpm build`   | Builds the app for production using TypeScript + Vite |
+   | `pnpm preview` | Serves the production build locally                   |
+   | `pnpm lint`    | Lints the codebase with ESLint                        |
+   | `pnpm test`    | Runs unit tests using Vitest                          |
 
 ## Plan
 
