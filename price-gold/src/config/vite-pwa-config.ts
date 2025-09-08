@@ -74,7 +74,7 @@ export const GENERATE_SW_OPTIONS = (): Options['workbox'] => ({
   clientsClaim: true, // new service worker will take control of all clients as soon as it's activated
   skipWaiting: true, // new service worker will skip the waiting phase and activate immediately
   cleanupOutdatedCaches: true, // clean up outdated caches
-
+  importScripts: ['firebase-messaging-sw.js'],
   runtimeCaching: [
     {
       // Cache static assets with a Cache First strategy
