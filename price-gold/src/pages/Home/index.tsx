@@ -112,6 +112,7 @@ export const Home = () => {
           />
         </div>
       </div>
+
       {!isOnline && (
         <Typography className="text-destructive py-4">
           You are offline. Data may be outdated.
