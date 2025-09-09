@@ -27,7 +27,8 @@ export const useLatestPriceGold = (currency = 'USD') => {
 
       return response.data as GoldPrice;
     },
-    staleTime: 1000 * 60 * 60 * 24, // 24 hours
+    staleTime: 1000 * 60 * 60, // 1 hours,
+    refetchOnMount: true, // always refetch when component is mounted
   });
 
   return {
@@ -49,7 +50,8 @@ export const useHistoricalPriceGold = (currency = 'USD') => {
 
       return response.data as HistoricalGoldPrice;
     },
-    staleTime: 1000 * 60 * 60, // 1 hours
+    staleTime: 1000 * 60 * 60, // 1 hours,
+    refetchOnMount: true,
   });
 
   return {

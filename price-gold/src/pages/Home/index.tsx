@@ -21,7 +21,6 @@ import {
   useLatestPriceGold,
   useOnlineStatus,
 } from '@/hooks';
-import { getDeviceToken } from '@/utils';
 
 export const Home = () => {
   const [currency, setCurrency] = useState(CURRENCIES_OPTIONS[0].value);
@@ -113,7 +112,7 @@ export const Home = () => {
           />
         </div>
       </div>
-      <Button onClick={getDeviceToken}>get token</Button>
+
       {!isOnline && (
         <Typography className="text-destructive py-4">
           You are offline. Data may be outdated.
