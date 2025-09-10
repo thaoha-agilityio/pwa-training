@@ -26,11 +26,24 @@ export const MANIFEST_OPTIONS: Partial<ManifestOptions> = {
       src: '/pwa-192x192.png',
       sizes: '192x192',
       type: 'image/png',
+      purpose: 'any',
     },
     {
       src: '/pwa-512x512.png',
       sizes: '512x512',
       type: 'image/png',
+    },
+    {
+      src: '/maskable-icon-512x512.png',
+      sizes: '512x512',
+      type: 'image/png',
+      purpose: 'maskable',
+    },
+    {
+      src: '/apple-touch-icon-180x180.png',
+      sizes: '180x180',
+      type: 'image/png',
+      purpose: 'any',
     },
   ],
   screenshots: [
@@ -66,6 +79,7 @@ export const MANIFEST_OPTIONS: Partial<ManifestOptions> = {
       ],
     },
   ],
+
   related_applications: [],
   prefer_related_applications: false,
 };

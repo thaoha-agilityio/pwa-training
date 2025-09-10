@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "prepare": "cd .. && husky ./price-gold/.husky",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "generate-pwa-assets": "pwa-assets-generator"
   },
   "dependencies": {
     "@radix-ui/react-select": "^2.2.6",
