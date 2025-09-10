@@ -59,7 +59,10 @@
 
 4. **Create environment variables**
 
-- Create a .env file in the root of the project and update it with your environment-specific variables follow .env.sample file
+- Clone the `.env.sample` file to `.env` and update it with your environment-specific variables:
+  ```bash
+  cp .env.sample .env
+  ```
 
 5. **Start the project**
 
