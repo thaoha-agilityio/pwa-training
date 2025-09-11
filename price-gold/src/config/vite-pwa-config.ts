@@ -11,11 +11,11 @@ export const MANIFEST_OPTIONS: Partial<ManifestOptions> = {
   scope: '/',
   display: 'standalone',
   orientation: 'portrait-primary',
-  theme_color: '#000000',
+  theme_color: '#ffffff',
   background_color: '#ffffff',
   lang: 'en',
   dir: 'ltr',
-  categories: ['productivity', 'utilities'],
+  categories: ['finance', 'business'],
   icons: [
     {
       src: '/pwa-64x64.png',
@@ -26,12 +26,13 @@ export const MANIFEST_OPTIONS: Partial<ManifestOptions> = {
       src: '/pwa-192x192.png',
       sizes: '192x192',
       type: 'image/png',
-      purpose: 'any',
+      purpose: 'any maskable',
     },
     {
       src: '/pwa-512x512.png',
       sizes: '512x512',
       type: 'image/png',
+      purpose: 'any maskable',
     },
     {
       src: '/maskable-icon-512x512.png',
@@ -49,7 +50,7 @@ export const MANIFEST_OPTIONS: Partial<ManifestOptions> = {
   screenshots: [
     {
       src: '/screenshots/desktop-home.png',
-      sizes: '800x800',
+      sizes: '1280x720',
       type: 'image/png',
       form_factor: 'wide',
       label: 'Home page on desktop',
@@ -57,7 +58,7 @@ export const MANIFEST_OPTIONS: Partial<ManifestOptions> = {
 
     {
       src: '/screenshots/mobile-home.png',
-      sizes: '380x380',
+      sizes: '390x844',
       type: 'image/png',
       form_factor: 'narrow',
       label: 'Home page on mobile',

@@ -5,11 +5,7 @@ import path from 'path';
 import tailwindcss from '@tailwindcss/vite';
 
 // config
-import {
-  GENERATE_SW_OPTIONS,
-  MANIFEST_OPTIONS,
-  splashScreenPlugin,
-} from './src/config';
+import { GENERATE_SW_OPTIONS, MANIFEST_OPTIONS } from './src/config';
 
 const envVariables = loadEnv('mock', process.cwd(), '');
 // https://vitejs.dev/config/
@@ -43,7 +39,6 @@ export default defineConfig({
         enabled: false, // enable only for debugging in dev
       },
     }),
-    splashScreenPlugin(),
   ],
   resolve: {
     alias: {
