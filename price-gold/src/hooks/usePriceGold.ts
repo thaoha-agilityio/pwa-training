@@ -9,6 +9,7 @@ import {
   INIT_GOLD_PRICE,
   INIT_GOLD_PRICE_HISTORICAL,
   QUERY_KEYS,
+  TIMING,
 } from '@/constants';
 
 // Services
@@ -27,8 +28,9 @@ export const useLatestPriceGold = (currency = 'USD') => {
 
       return response.data as GoldPrice;
     },
-    staleTime: 1000 * 60 * 60, // 1 hours,
+    staleTime: TIMING.API_STALE_TIME,
     refetchOnMount: true, // always refetch when component is mounted
+    refetchOnReconnect: 'always', // always refetch when reconnecting (back online)
   });
 
   return {
@@ -50,8 +52,9 @@ export const useHistoricalPriceGold = (currency = 'USD') => {
 
       return response.data as HistoricalGoldPrice;
     },
-    staleTime: 1000 * 60 * 60, // 1 hours,
+    staleTime: TIMING.API_STALE_TIME,
     refetchOnMount: true,
+    refetchOnReconnect: 'always',
   });
 
   return {
