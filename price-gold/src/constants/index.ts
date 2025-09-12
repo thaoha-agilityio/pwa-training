@@ -4,3 +4,4 @@ export * from './caches';
 export * from './queryKeys';
 export * from './options';
 export * from './gold';
+export * from './timing';
