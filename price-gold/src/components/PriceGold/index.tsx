@@ -24,22 +24,26 @@ export const PriceGold = ({
   const isPositiveAmount = changePercent >= 0;
 
   return (
-    <div className="flex gap-3 items-center">
+    <div className="flex flex-col md:flex-row gap-3 items-start md:items-center ">
       <Typography variant="h2" className="text-lg md:text-3xl">
         {symbol}
         {formatCurrency(latestPrice)} {currency}
       </Typography>
-      <Typography variant="span">
-        Change: {formatChange(change, currency)}{' '}
-        <span
-          className={`font-medium  ${
-            isPositiveAmount ? 'text-increase' : 'text-decrease'
-          }`}
-        >
-          {formatPercent(changePercent)}
-        </span>
-      </Typography>
-      <Typography variant="p">24H</Typography>
+      <div>
+        <Typography variant="span">
+          Change: {formatChange(change, currency)}{' '}
+          <span
+            className={`font-medium  ${
+              isPositiveAmount ? 'text-increase' : 'text-decrease'
+            }`}
+          >
+            {formatPercent(changePercent)}
+          </span>
+        </Typography>
+        <Typography variant="span" className="pl-2">
+          24H
+        </Typography>
+      </div>
     </div>
   );
 };

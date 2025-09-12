@@ -56,7 +56,7 @@ export const TradingPriceChart = () => {
             variant="ghost"
             key={period}
             onClick={() => handlePeriodChange(period)}
-            className={`px-3 py-1.5 text-sm font-medium rounded transition-colors ${
+            className={`px-1 md:px-3 py-1.5 text-xs md:text-sm font-medium rounded transition-colors ${
               selectedPeriod === period
                 ? 'text-chart'
                 : 'text-secondary hover:bg-gray-100'
