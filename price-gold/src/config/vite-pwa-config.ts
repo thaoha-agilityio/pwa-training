@@ -121,40 +121,7 @@ export const GENERATE_SW_OPTIONS = (): Options['workbox'] => ({
         },
       },
     },
-    {
-      // Cache splash screen images with Cache First strategy
-      urlPattern: /^\/splash\/.*\.(png|jpg|jpeg|svg)$/,
-      handler: 'CacheFirst', // Cache splash screens and use cached version when offline
-      options: {
-        cacheName: CACHE_NAMES.SPLASH_SCREENS,
-        expiration: {
-          maxAgeSeconds: 30 * 24 * 60 * 60, // Cache for 30 days
-        },
-        backgroundSync: {
-          name: 'splash-sync-queue',
-          options: {
-            maxRetentionTime: 60 * 24, // Keep sync requests for 24 hours
-          },
-        },
-      },
-    },
-    {
-      // Cache icon images with Cache First strategy
-      urlPattern: /^\/icons\/.*\.(png|jpg|jpeg|svg)$/,
-      handler: 'CacheFirst', // Cache icons and use cached version when offline
-      options: {
-        cacheName: CACHE_NAMES.ICONS,
-        expiration: {
-          maxAgeSeconds: 30 * 24 * 60 * 60, // Cache for 30 days
-        },
-        backgroundSync: {
-          name: 'icon-sync-queue',
-          options: {
-            maxRetentionTime: 60 * 24, // Keep sync requests for 24 hours
-          },
-        },
-      },
-    },
+
     {
       // Cache CSS/JS using Stale-While-Revalidate to serve cached files while fetching updates
       urlPattern: /\.(?:js|css)$/i,
@@ -181,12 +148,6 @@ export const GENERATE_SW_OPTIONS = (): Options['workbox'] => ({
           maxAgeSeconds: 24 * 60 * 60, // Cache for 1 day
         },
         networkTimeoutSeconds: 3, // Fallback to cache if fetch is slow
-        backgroundSync: {
-          name: 'manifest-sync-queue',
-          options: {
-            maxRetentionTime: 60 * 24, // Keep sync requests for 24 hours
-          },
-        },
       },
     },
     {
