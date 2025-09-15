@@ -12,7 +12,7 @@ import {
 } from '@/components';
 
 // Constants
-import { CURRENCIES_OPTIONS } from '@/constants';
+import { CURRENCIES_OPTIONS, ERROR_MESSAGES } from '@/constants';
 
 // Hooks
 import {
@@ -38,12 +38,15 @@ export const Home = () => {
     useHistoricalPriceGold(currency);
 
   // Latest rates
-  const { rates: latestRates } = latestData || {};
+  const { rates: latestRates, success } = latestData || {};
   const { rates: historicalRates } = historicalData || {};
 
   // Helpers
   const isUSD = currency === CURRENCIES_OPTIONS[0].value;
   const latestPrice = isUSD ? latestRates?.USDXAU : latestRates?.EURXAU;
+
+  // Additional data
+  const xauData = historicalRates?.XAU ?? { change: 0, change_pct: 0 };
 
   const TABS_DATA = [
     {
@@ -53,8 +56,8 @@ export const Home = () => {
         <PriceGold
           isUSD={isUSD}
           latestPrice={latestPrice}
-          change={historicalRates.XAU.change}
-          changePercent={historicalRates.XAU.change_pct}
+          change={xauData.change}
+          changePercent={xauData.change_pct}
           currency={currency}
         />
       ),
@@ -83,9 +86,10 @@ export const Home = () => {
   };
 
   useEffect(() => {
-    if (errorLatest || errorHistorical) {
+    if (errorLatest || errorHistorical || !success) {
       toast.error('Fetch error', {
-        description: errorLatest || errorHistorical,
+        description:
+          errorLatest || errorHistorical || ERROR_MESSAGES.LIMIT_REQUESTS,
       });
     }
   }, [errorLatest, errorHistorical]);
