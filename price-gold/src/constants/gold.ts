@@ -1,6 +1,7 @@
 import { GoldPrice } from '../types';
 
 export const INIT_GOLD_PRICE: GoldPrice = {
+  success: false,
   date: '',
   price: 0,
   rates: {
@@ -9,6 +10,7 @@ export const INIT_GOLD_PRICE: GoldPrice = {
 };
 
 export const INIT_GOLD_PRICE_HISTORICAL = {
+  success: false,
   start_rate: 0,
   end_rate: 0,
   rates: {
