@@ -32,6 +32,7 @@ export const Home = () => {
     isFetching,
     refetch,
     error: errorLatest,
+    isFetched,
   } = useLatestPriceGold(currency);
 
   const { data: historicalData, error: errorHistorical } =
@@ -86,13 +87,13 @@ export const Home = () => {
   };
 
   useEffect(() => {
-    if (errorLatest || errorHistorical || !success) {
+    if (errorLatest || errorHistorical || (success === false && isFetched)) {
       toast.error('Fetch error', {
         description:
           errorLatest || errorHistorical || ERROR_MESSAGES.LIMIT_REQUESTS,
       });
     }
-  }, [errorLatest, errorHistorical, success]);
+  }, [errorLatest, errorHistorical, success, isFetched]);
 
   return (
     <div className="p-3 w-full m-auto md:max-w-6xl py-6">
