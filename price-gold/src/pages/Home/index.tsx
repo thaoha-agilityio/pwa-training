@@ -92,7 +92,7 @@ export const Home = () => {
           errorLatest || errorHistorical || ERROR_MESSAGES.LIMIT_REQUESTS,
       });
     }
-  }, [errorLatest, errorHistorical]);
+  }, [errorLatest, errorHistorical, success]);
 
   return (
     <div className="p-3 w-full m-auto md:max-w-6xl py-6">

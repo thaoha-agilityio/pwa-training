@@ -17,7 +17,7 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Toaster richColors position="top-right" />
+      <Toaster richColors position="top-center" />
       <Home />
     </QueryClientProvider>
   );
