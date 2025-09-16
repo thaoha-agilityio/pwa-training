@@ -12,7 +12,7 @@ import {
 } from '@/components';
 
 // Constants
-import { CURRENCIES_OPTIONS, ERROR_MESSAGES } from '@/constants';
+import { CURRENCIES_OPTIONS } from '@/constants';
 
 // Hooks
 import {
@@ -32,7 +32,6 @@ export const Home = () => {
     isFetching,
     refetch,
     error: errorLatest,
-    isFetched,
   } = useLatestPriceGold(currency);
 
   const { data: historicalData, error: errorHistorical } =
@@ -87,13 +86,12 @@ export const Home = () => {
   };
 
   useEffect(() => {
-    if (errorLatest || errorHistorical || (success === false && isFetched)) {
+    if (errorLatest || errorHistorical) {
       toast.error('Fetch error', {
-        description:
-          errorLatest || errorHistorical || ERROR_MESSAGES.LIMIT_REQUESTS,
+        description: errorLatest || errorHistorical,
       });
     }
-  }, [errorLatest, errorHistorical, success, isFetched]);
+  }, [errorLatest, errorHistorical, success]);
 
   return (
     <div className="p-3 w-full m-auto md:max-w-6xl py-6">
