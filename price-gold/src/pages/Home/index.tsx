@@ -21,7 +21,6 @@ import {
   useLatestPriceGold,
   useOnlineStatus,
 } from '@/hooks';
-import { getDeviceToken } from '@/utils';
 
 export const Home = () => {
   const [currency, setCurrency] = useState(CURRENCIES_OPTIONS[0].value);
@@ -82,7 +81,6 @@ export const Home = () => {
 
   const handleRefresh = useDebouncedCallback(() => refetch(), 500);
 
-  const [isGetToken, setIsGetToken] = useState(false);
   const handleCurrencyChange = (value: string) => {
     setCurrency(value);
   };
@@ -93,12 +91,7 @@ export const Home = () => {
         description: errorLatest || errorHistorical,
       });
     }
-    if (isGetToken) {
-      toast.success('Fetch error', {
-        description: getDeviceToken(),
-      });
-    }
-  }, [errorLatest, errorHistorical, success, isGetToken]);
+  }, [errorLatest, errorHistorical, success]);
 
   return (
     <div className="p-3 w-full m-auto md:max-w-6xl py-6">
@@ -122,7 +115,6 @@ export const Home = () => {
           />
         </div>
       </div>
-      <Button onClick={() => setIsGetToken(true)}>Token</Button>
       {!isOnline && (
         <Typography className="text-destructive py-4">
           You are offline. Data may be outdated.
