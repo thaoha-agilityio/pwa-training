@@ -1,4 +1,5 @@
 export * from './api';
+export * from './breakpoint';
 export * from './chart';
 export * from './caches';
 export * from './queryKeys';
