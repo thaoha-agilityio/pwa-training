@@ -9,17 +9,20 @@ import {
   Tabs,
   Typography,
   TradingPriceChart,
+  PullToRefreshIndicator,
 } from '@/components';
 
 // Constants
-import { CURRENCIES_OPTIONS, ERROR_MESSAGES } from '@/constants';
+import { CURRENCIES_OPTIONS } from '@/constants';
 
 // Hooks
 import {
   useDebouncedCallback,
   useHistoricalPriceGold,
+  useIsMobile,
   useLatestPriceGold,
   useOnlineStatus,
+  usePullToRefresh,
 } from '@/hooks';
 
 export const Home = () => {
@@ -32,7 +35,6 @@ export const Home = () => {
     isFetching,
     refetch,
     error: errorLatest,
-    isFetched,
   } = useLatestPriceGold(currency);
 
   const { data: historicalData, error: errorHistorical } =
@@ -85,45 +87,79 @@ export const Home = () => {
   const handleCurrencyChange = (value: string) => {
     setCurrency(value);
   };
+  // Pull to refresh hook
+  const {
+    isPulling,
+    isRefreshing,
+    hasRefresh,
+    pullDistance,
+    containerRef,
+    pullToRefreshStyle,
+  } = usePullToRefresh({
+    onRefresh: handleRefresh,
+    threshold: 80,
+    resistance: 2.5,
+    enabled: true,
+    distanceToRefresh: 60,
+  });
+
+  const isMobile = useIsMobile();
 
   useEffect(() => {
-    if (errorLatest || errorHistorical || (success === false && isFetched)) {
+    if (errorLatest || errorHistorical) {
       toast.error('Fetch error', {
-        description:
-          errorLatest || errorHistorical || ERROR_MESSAGES.LIMIT_REQUESTS,
+        description: errorLatest || errorHistorical,
       });
     }
-  }, [errorLatest, errorHistorical, success, isFetched]);
+  }, [errorLatest, errorHistorical, success]);
 
   return (
-    <div className="p-3 w-full m-auto md:max-w-6xl py-6">
-      <Typography variant="h1">Gold Price Charts</Typography>
-      <div className="my-6 flex md:flex-row flex-col-reverse justify-between">
-        <Tabs tabs={TABS_DATA} />
-
-        <div className="flex pb-3 md:pb-0 gap-2 md:gap-4">
-          <Button
-            disabled={isFetching}
-            isLoading={isFetching}
-            onClick={handleRefresh}
-          >
-            Refresh
-          </Button>
-          <SelectDropdown
-            selectedValue={currency}
-            options={CURRENCIES_OPTIONS}
-            extraStyle="w-[120px] md:w-[200px]"
-            onSelect={handleCurrencyChange}
-          />
-        </div>
-      </div>
-
-      {!isOnline && (
-        <Typography className="text-destructive py-4">
-          You are offline. Data may be outdated.
-        </Typography>
+    <div
+      ref={containerRef}
+      className="relative min-h-screen overflow-auto bg-gray-50"
+      style={pullToRefreshStyle}
+    >
+      {/* Pull to refresh indicator */}
+      {isMobile && (
+        <PullToRefreshIndicator
+          isPulling={isPulling}
+          isRefreshing={isRefreshing || isFetching}
+          hasRefresh={hasRefresh}
+          pullDistance={pullDistance}
+        />
       )}
-      <TradingPriceChart />
+      <div className="p-3 w-full m-auto md:max-w-6xl py-6">
+        <Typography variant="h1" className="mt-2">
+          Gold Price Charts
+        </Typography>
+        <div className="my-6 flex md:flex-row flex-col-reverse justify-between">
+          <Tabs tabs={TABS_DATA} />
+
+          <div className="flex pb-3 md:pb-0 gap-2 md:gap-4">
+            {!isMobile && (
+              <Button
+                disabled={isFetching}
+                isLoading={isFetching}
+                onClick={handleRefresh}
+              >
+                Refresh
+              </Button>
+            )}
+            <SelectDropdown
+              selectedValue={currency}
+              options={CURRENCIES_OPTIONS}
+              extraStyle="w-[120px] md:w-[200px]"
+              onSelect={handleCurrencyChange}
+            />
+          </div>
+        </div>
+        {!isOnline && (
+          <Typography className="text-destructive py-4">
+            You are offline. Data may be outdated.
+          </Typography>
+        )}
+        <TradingPriceChart />
+      </div>
     </div>
   );
 };
