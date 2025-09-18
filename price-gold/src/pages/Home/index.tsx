@@ -10,10 +10,11 @@ import {
   Typography,
   TradingPriceChart,
   PullToRefreshIndicator,
+  NotificationInfo,
 } from '@/components';
 
 // Constants
-import { CURRENCIES_OPTIONS } from '@/constants';
+import { CURRENCIES_OPTIONS, NOTIFICATION_MESSAGES } from '@/constants';
 
 // Hooks
 import {
@@ -21,9 +22,13 @@ import {
   useHistoricalPriceGold,
   useIsMobile,
   useLatestPriceGold,
+  useNotificationPermission,
   useOnlineStatus,
   usePullToRefresh,
 } from '@/hooks';
+
+// utils
+import { isIOS, isStandalone } from '@/utils';
 
 export const Home = () => {
   const [currency, setCurrency] = useState(CURRENCIES_OPTIONS[0].value);
@@ -113,6 +118,29 @@ export const Home = () => {
     }
   }, [errorLatest, errorHistorical, success]);
 
+  const { permission, requestPermission, isSupported, isBlocked, isPending } =
+    useNotificationPermission();
+
+  useEffect(() => {
+    if (isBlocked) {
+      toast.error(NOTIFICATION_MESSAGES.BLOCKED);
+    }
+  }, [isBlocked]);
+
+  const handleRequest = async () => {
+    const result = await requestPermission();
+
+    if (result === 'granted') {
+      toast.success(NOTIFICATION_MESSAGES.GRANTED);
+
+      return;
+    }
+
+    if (result === 'denied') {
+      toast.error(NOTIFICATION_MESSAGES.DENIED);
+    }
+  };
+
   return (
     <div
       ref={containerRef}
@@ -129,6 +157,16 @@ export const Home = () => {
         />
       )}
       <div className="p-3 w-full m-auto md:max-w-6xl py-6">
+        <NotificationInfo
+          isSupported={isSupported}
+          permission={permission}
+          isPending={isPending}
+          isBlocked={isBlocked}
+          isIOS={isIOS}
+          isStandalone={isStandalone}
+          onRequest={handleRequest}
+        />
+
         <Typography variant="h1" className="mt-2">
           Gold Price Charts
         </Typography>
@@ -153,6 +191,7 @@ export const Home = () => {
             />
           </div>
         </div>
+
         {!isOnline && (
           <Typography className="text-destructive py-4">
             You are offline. Data may be outdated.
